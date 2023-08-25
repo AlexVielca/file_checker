@@ -6,6 +6,7 @@ import re
 def find_vbk_files(directory):
     data = []
     rev_list = []
+    
     for folder in os.listdir(directory):
         folder_path = os.path.join(directory, folder)
         
