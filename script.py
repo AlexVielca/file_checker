@@ -86,3 +86,5 @@ def find_vbk_files(directory):
 
 directory_to_search = r"\\vs-nas-01\correos"  # Cambiar esta línea con la ruta correcta
 find_vbk_files(directory_to_search)
+
+input("Presiona Enter para salir...")
