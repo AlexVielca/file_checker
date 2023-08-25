@@ -10,12 +10,12 @@ def find_vbk_files(directory):
         folder_path = os.path.join(directory, folder)
         
         if os.path.isdir(folder_path) and not re.search(r"Ex-empleados", folder):                       #   descomentar
-            # vbk_files = []                                                                            # <-------------+
+            vbk_files = []                                                                            # <-------------+
             for root, dirs, files in os.walk(folder_path):                                              #    comentar   | 
-                vbk_files = []                                                                          # <-------------+--- * Para obtener un total de ficheros .vbk por persona.
+                # vbk_files = []                                                                          # <-------------+--- * Para obtener un total de ficheros .vbk por persona.
                 vbk_files.extend([os.path.join(root, file) for file in files if file.endswith('.vbk')]) #               |    (en el caso contrario se busca los .vbk por cada carpeta 
                                                                                                         #   descomentar |        diferente dentro de cada usuario)
-            # if vbk_files:                                                                             # <-------------+
+            if vbk_files:                                                                             # <-------------+
                 if vbk_files:                                                                           #               | 
                     print(f"Nombre: {folder}")                                                          #               |
                     print(f"Numero de ficheros .vbk: {len(vbk_files)}")                                 #               |
@@ -27,8 +27,8 @@ def find_vbk_files(directory):
                     min_vbk_file = None                                                                 #               |
                                                                                                         #               |
                     for vbk_file in vbk_files:                                                          #               |
-                        # if True:                                                                      # <- descomentar+
-                        if os.path.dirname(vbk_file) == root:                                           # <- comentar---+
+                        if True:                                                                      # <- descomentar+
+                        # if os.path.dirname(vbk_file) == root:                                           # <- comentar---+
                             creation_time = datetime.datetime.fromtimestamp(os.path.getctime(vbk_file)) #               |
                             today = datetime.datetime.today()                                           #               |               
                             time_difference = today - creation_time                                     #               |
@@ -40,8 +40,7 @@ def find_vbk_files(directory):
                                 min_vbk_file = vbk_file                                                 #               |
                                 min_creation_date = creation_time                                       #               |
                                 min_size_in_mb = size_in_mb                                             #               |
-                                if min_days > 14:                                                       #               |
-                                    rev_list.append(folder)                                             #               |
+                                                                                                        #               |
                             print(f"  File: {vbk_file}")                                                #               |
                             print(f"  Creation Date: {creation_time}")                                  #               |
                             print(f"  Days Since Creation: {time_difference.days} days")                #               |
@@ -67,8 +66,8 @@ def find_vbk_files(directory):
                     })                                                                                  #               |
                                                                                                         #               |
                     for vbk_file in vbk_files:                                                          #               |
-                        # if True:                                                                      # <-descomentar-+
-                        if os.path.dirname(vbk_file) == root:                                           # <-comentar----+
+                        if True:                                                                      # <-descomentar-+
+                        # if os.path.dirname(vbk_file) == root:                                           # <-comentar----+
                             if vbk_file != min_vbk_file:                                                
                                 # os.remove(vbk_file)                               # <--- Para eliminar el fichero
                                 print(f"  --x-- Eliminado antiguo: {vbk_file}\n")
@@ -77,6 +76,9 @@ def find_vbk_files(directory):
                     print(f"    ---> With {min_days} days since creation\n")
                     print("-"*30 + "\n")
                     
+                    if min_days > 14:
+                        rev_list.append(folder)
+                        
     print(f"Usuarios a revisar: {rev_list}\n")     
                    
     df = pd.DataFrame(data)
