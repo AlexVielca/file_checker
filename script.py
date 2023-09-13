@@ -6,6 +6,7 @@ import re
 def find_vbk_files(directory):
     data = []
     rev_list = []
+    count_deleted = 0
     
     for folder in os.listdir(directory):
         folder_path = os.path.join(directory, folder)
@@ -30,7 +31,7 @@ def find_vbk_files(directory):
                     for vbk_file in vbk_files:                                                          #               |
                         if True:                                                                      # <- descomentar+
                         # if os.path.dirname(vbk_file) == root:                                           # <- comentar---+
-                            creation_time = datetime.datetime.fromtimestamp(os.path.getctime(vbk_file)) #               |
+                            creation_time = datetime.datetime.fromtimestamp(os.path.getmtime(vbk_file)) #               |
                             today = datetime.datetime.today()                                           #               |               
                             time_difference = today - creation_time                                     #               |
                             vbk_file_size = os.path.getsize(vbk_file)                                   #               |
@@ -71,6 +72,7 @@ def find_vbk_files(directory):
                         # if os.path.dirname(vbk_file) == root:                                           # <-comentar----+
                             if vbk_file != min_vbk_file:                                                
                                 # os.remove(vbk_file)                               # <--- Para eliminar el fichero
+                                count_deleted = count_deleted + 1
                                 print(f"  --x-- Eliminado antiguo: {vbk_file}\n")
 
                     print(f"    ---> More resent file: {min_vbk_file}")
@@ -80,6 +82,7 @@ def find_vbk_files(directory):
                     if min_days > 14:
                         rev_list.append(folder)
                         
+    print(f"Ficheros eliminados: {count_deleted}\n")  
     print(f"Usuarios a revisar: {rev_list}\n")     
                    
     df = pd.DataFrame(data)
