@@ -86,7 +86,8 @@ def find_vbk_files(directory):
     print(f"Usuarios a revisar: {rev_list}\n")     
                    
     df = pd.DataFrame(data)
-    excel_file = f"vbk_files_{str(datetime.datetime.now())[-5:]}.xlsx"
+    # excel_file = f"vbk_files_{str(datetime.datetime.now())[-5:]}.xlsx"
+    excel_file = f"vbk_files_{str(datetime.datetime.now())}.xlsx"
     # df.to_excel(excel_file, index=False)                                          # <--- Para guardar en excel
     print(f"Excel guardado {excel_file}")
 
