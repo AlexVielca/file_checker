@@ -16,10 +16,10 @@ def find_vbk_files(directory):
             for root, dirs, files in os.walk(folder_path):                                              #    comentar   | 
                 # vbk_files = []                                                                          # <-------------+--- * Para obtener un total de ficheros .vbk por persona.
                 vbk_files.extend([os.path.join(root, file) for file in files if file.endswith('.vbk')]) #               |    (en el caso contrario se busca los .vbk por cada carpeta 
-                                                                                                        #   descomentar |        diferente dentro de cada usuario)
-            if vbk_files:                                                                             # <-------------+
-                if vbk_files:                                                                           #               | 
-                    print(f"Nombre: {folder}")                                                          #               |
+                                                                                                        #   descomentar |        diferente dentro de cada usuario, por ejemplo 
+            if vbk_files:                                                                             # <-------------+       si un empleado tiene carpetas Job1 y Job2 para las copias
+                if vbk_files:                                                                           #               |       se busca por separado archivos "nuevos" y "viejos" dentro
+                    print(f"Nombre: {folder}")                                                          #               |           de cada una de estas carpeta)
                     print(f"Numero de ficheros .vbk: {len(vbk_files)}")                                 #               |
                     print(f"Carpeta: {root}")                                                           #               |
                                                                                                         #               |
