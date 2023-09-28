@@ -91,7 +91,10 @@ def find_vbk_files(directory):
     # df.to_excel(excel_file, index=False)                                          # <--- Para guardar en excel
     print(f"Excel guardado {excel_file}")
 
-directory_to_search = r"\\vs-nas-01\correos"  # Cambiar esta línea con la ruta correcta
-find_vbk_files(directory_to_search)
+def main():
+    directory_to_search = r"\\vs-nas-01\correos"  # Cambiar esta línea con la ruta correcta
+    find_vbk_files(directory_to_search)
 
-input("Presiona Enter para salir...")
+if __name__ == '__main__':
+    main()
+    input("Presiona Enter para salir...")
