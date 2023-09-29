@@ -99,20 +99,22 @@ def find_vbk_files(directory):
 
     print(f"Ficheros eliminados: {count_deleted}\n")
     print(f"Usuarios a revisar: {rev_list}\n")
-    print(f" \n")
     
-    for day in day_list:
-        print(f"{day} : ") 
-        for user in sorted(day_list[day], key=lambda x: x["Hour"]):
-            print(f'    {user["Hour"]} - {user["Name"]}, ')
-        print(" \n")
+    if input("¿Quieres ver el horario de copias (Y/N)? ").upper() == "Y":
+        print(f" \n")
+
+        for day in day_list:
+            print(f"{day} : ") 
+            for user in sorted(day_list[day], key=lambda x: x["Hour"]):
+                print(f'    {user["Hour"]} - {user["Name"]}, ')
+            print(" \n")
         
                    
     df = pd.DataFrame(data)
     # excel_file = f"vbk_files_{str(datetime.datetime.now())[-5:]}.xlsx"
     excel_file = f"vbk_files_{str(datetime.datetime.now())}.xlsx"
     # df.to_excel(excel_file, index=False)                                          # <--- Para guardar en excel
-    print(f"Excel guardado {excel_file}")
+    # print(f"Excel guardado {excel_file}")
 
 def main():
     directory_to_search = r"\\vs-nas-01\correos"  # Cambiar esta línea con la ruta correcta
