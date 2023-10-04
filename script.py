@@ -7,6 +7,7 @@ def find_vbk_files(directory):
     data = []
     rev_list = []
     count_deleted = 0
+    nombres_sin_vbk = []
     
     day_list = {
         "Monday": [],
@@ -96,9 +97,13 @@ def find_vbk_files(directory):
                         rev_list.append(folder)
                     
                     day_list[w_day].append({"Name": folder, "Hour": hour})
+            else:
+                nombres_sin_vbk.append(folder)
 
     print(f"Ficheros eliminados: {count_deleted}\n")
     print(f"Usuarios a revisar: {rev_list}\n")
+    if nombres_sin_vbk:
+        print(f"Usuarios sin vbk: {nombres_sin_vbk}\n")
     
     if input("¿Quieres ver el horario de copias (Y/N)? ").upper() == "Y":
         print(f" \n")
